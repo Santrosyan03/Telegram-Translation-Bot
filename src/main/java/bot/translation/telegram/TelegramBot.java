@@ -1,52 +1,34 @@
 package bot.translation.telegram;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.Response;
+import org.springframework.beans.factory.annotation.Value;
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
-import io.vertx.core.json.JsonObject;
-import org.eclipse.microprofile.config.inject.ConfigProperty;
-import javax.ws.rs.client.Client;
+public class TelegramBot extends TelegramLongPollingBot {
+    @Override
+    public void onUpdateReceived(Update update) {
+        String chatId = update.getMessage().getChatId().toString();
+        String text = update.getMessage().getText();
 
-@ApplicationScoped
-public class TelegramBot {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId);
+        sendMessage.setText(text);
 
-    @ConfigProperty(name = "telegram.token")
-    String token;
-
-    @ConfigProperty(name = "telegram.chatId")
-    String chatId;
-    private WebTarget baseTarget;
-    private Client client;
-    @PostConstruct
-    public void initClient() {
-        client = ClientBuilder.newClient();
-        baseTarget = client.target("https://api.telegram.org/bot{token}")
-                .resolveTemplate("token", token);
-    }
-
-    public void sendMessage(String message) {
         try {
-            Response response = baseTarget
-                    .path("sendMessage")
-                    .queryParam("chat_id", chatId)
-                    .queryParam("text", message)
-                    .request()
-                    .get();
-            JsonObject json = response.readEntity(JsonObject.class);
-            boolean ok = json.getBoolean("ok", false);
-            if (!ok) System.out.println("Couldn't successfully send a message");
+            this.execute(sendMessage);
         } catch (Exception exception) {
-            System.out.println("Couldn't successfully send a message, " + exception.getMessage());
-            exception.printStackTrace();
+            throw new RuntimeException(exception);
         }
     }
 
-    @PreDestroy
-    public void closeClient() {
-        client.close();
+    @Override
+    public String getBotToken() {
+        return "6690156151:AAERI57Y6UagMbwKOdTdalWFjLLjBbdgJD0";
+    }
+
+    @Override
+    public String getBotUsername() {
+        return "TranslationTelegramBot";
     }
 }
