@@ -1,12 +1,12 @@
-import io.quarkus.runtime.Quarkus;
-import io.quarkus.runtime.QuarkusApplication;
-import io.quarkus.runtime.annotations.QuarkusMain;
+import bot.translation.telegram.TelegramBot;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
-@QuarkusMain
-public class Main implements QuarkusApplication {
-    @Override
-    public int run(String... args) throws Exception {
-        Quarkus.waitForExit();
-        return 0;
+public class Main {
+    public static void main(String[] args) throws TelegramApiException {
+        TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
+        telegramBotsApi.registerBot(new TelegramBot());
     }
+
 }
