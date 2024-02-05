@@ -1,16 +1,19 @@
 package bot.translation.telegram;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
+import jakarta.inject.Inject;
+import javax.enterprise.context.ApplicationScoped;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
 
-@Path("/hello")
+@ApplicationScoped
+@Path("/translate")
 public class ExampleResource {
+    @Inject
+    TelegramBot bot;
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String hello() {
-        return "Hello from RESTEasy Reactive";
+    public void message() {
+        String welcomeMessage = "Hello and Welcome to Telegram Online Translating BOT!!!";
+        bot.sendMessage(welcomeMessage);
     }
 }
