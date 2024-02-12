@@ -1,56 +1,50 @@
-# telegram-translation-bot-application
+# Telegram Translation Bot
+This Telegram bot allows users to translate text from English to either Russian or Armenian. Users can select their preferred language and then type or change text to be translated.
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+### Features
+Translate text from English to Russian or Armenian.
+Choose the target language from a selection menu.
+Change the selected language at any time.
+Notifications for already selected language.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+### Usage
+Start a conversation with the bot by searching for @TranslationTelegramBot on Telegram or by clicking here.
+Type /start to initiate the bot.
+Choose your preferred language from the provided options.
+Once a language is selected, type any English text, and the bot will translate it to the chosen language.
+To change the selected language, type /change.
+Select the new language from the options provided.
+### Dependencies
+#### 1) Java 8 or higher
+#### 2) Lombok (for annotation processing)
+#### 3) TelegramBots API (for Telegram bot integration)
+#### 4) JSON-java (for JSON processing)
+#### 5) SLF4J (for logging)
+### Setup
+#### Clone this repository:
 
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
-```shell script
-./mvnw compile quarkus:dev
+```bash
+git clone https://github.com/yourusername/telegram-translation-bot.git
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at http://localhost:8080/q/dev/.
+### Create a personal.properties file in the src/main/resources directory with the following properties:
 
-## Packaging and running the application
-
-The application can be packaged using:
-```shell script
-./mvnw package
+```properties
+token=YOUR_TELEGRAM_BOT_TOKEN
+api_key=YOUR_GOOGLE_TRANSLATE_API_KEY
+name=TELEGRAM_BOT_NAME
 ```
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+#### Replace YOUR_TELEGRAM_BOT_TOKEN with your Telegram bot token and YOUR_GOOGLE_TRANSLATE_API_KEY with your Google Translate API key.
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
 
-If you want to build an _über-jar_, execute the following command:
-```shell script
-./mvnw package -Dquarkus.package.type=uber-jar
+### Build the project using your preferred build tool (Maven, Gradle, etc.).
+
+Run the bot:
+
+```shell
+java -jar yourjarfile.jar
 ```
+Replace yourjarfile.jar with the name of your compiled JAR file.
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: 
-```shell script
-./mvnw package -Dnative
-```
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: 
-```shell script
-./mvnw package -Dnative -Dquarkus.native.container-build=true
-```
-
-You can then execute your native executable with: `./target/telegram-translation-bot-application-1.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
-
-## Provided Code
-
-### RESTEasy Reactive
-
-Easily start your Reactive RESTful Web Services
-
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+### Contributing
+Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or create a pull request.
