@@ -27,17 +27,17 @@ Select the new language from the options provided.
 git clone https://github.com/yourusername/telegram-translation-bot.git
 ```
 
-### Create a personal.properties file in the src/main/resources directory with the following properties:
+Create a personal.properties file in the src/main/resources directory with the following properties:
 
 ```properties
 token=YOUR_TELEGRAM_BOT_TOKEN
 api_key=YOUR_GOOGLE_TRANSLATE_API_KEY
 name=TELEGRAM_BOT_NAME
 ```
-#### Replace YOUR_TELEGRAM_BOT_TOKEN with your Telegram bot token and YOUR_GOOGLE_TRANSLATE_API_KEY with your Google Translate API key.
+Replace YOUR_TELEGRAM_BOT_TOKEN with your Telegram bot token and YOUR_GOOGLE_TRANSLATE_API_KEY with your Google Translate API key.
 
 
-### Build the project using your preferred build tool (Maven, Gradle, etc.).
+Build the project using your preferred build tool (Maven, Gradle, etc.).
 
 Run the bot:
 
